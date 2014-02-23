@@ -1,0 +1,5 @@
+[when] There is a transaction = trans : Transactions()
+[when] get all receipts that has been categorized for the given {category:ENUM:Category.value} = transactions : java.util.List( eval( size > 0 )) from collect ( Transaction() from trans.getRecCategorization().get("{category}"))
+[when] get all multi policy receipts that has been categorized for the given {category:ENUM:Category.value} = transactions : java.util.List( eval( size > 0 )) from collect ( MultiTransaction() from trans.getMultiTransaction().get("{category}"))
+[then] assign associates for the categorized receiptes = retrieveAssociates.retrieveAssciates(transactions);   processTransactions.addTransactions(transactions);
+[then] assign associates for the categorized multi policy receiptes = retrieveAssociates.retrieveAssciatesMT(transactions); processTransactions.addTransactionsMT(transactions);

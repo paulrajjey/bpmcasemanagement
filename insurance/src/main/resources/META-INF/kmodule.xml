@@ -1,0 +1,12 @@
+<kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <kbase name="workassignment" default="true" eventProcessingMode="stream" equalsBehavior="identity">
+    <ksession name="workassignmentSession" type="stateful" default="true" clockType="realtime">
+      <workItemHandlers>
+        <workItemHandler type="new com.insurance.workitem.RetrieveTransactions()" name="RetrieveTransaction"/>
+        <workItemHandler type="new com.insurance.workitem.PriortizeWorkReceipts()" name="PrioritizeReceipts"/>
+        <workItemHandler type="new com.insurance.workitem.RetrieveAssociates()" name="RetrieveAssociates"/>
+        <workItemHandler type="new com.insurance.workitem.UpdateUnassignedQueue()" name="UpdateUnassignedQueue"/>
+      </workItemHandlers>
+    </ksession>
+  </kbase>
+</kmodule>

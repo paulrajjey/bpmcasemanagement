@@ -1,0 +1,18 @@
+import java.lang.Number;
+import com.insurance.DateUtil;
+import com.insurance.Transactions;
+import com.insurance.Transaction;
+import com.insurance.MultiTransaction;
+
+rule "previous day AEPS transaction not assigned due to eligibility or capacity constraints"
+	dialect "mvel"
+	salience 30
+	when
+		transactions : Transactions( )
+		transaction : Transaction( apesInd == "Y" , itemStatus == "UNASSIGNED" , statusReason == "UNAVAILABLE CAPACITY" , quedate : queueDate)
+		eval( DateUtil.compareDate(quedate)==1 )
+	then
+		transactions.addReceipts( "AEPS-01", transaction );
+		transaction.setPriority( "1" );
+		transaction.setDuedate( "P2d" );
+end

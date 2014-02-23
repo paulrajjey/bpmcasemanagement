@@ -1,0 +1,24 @@
+import java.lang.Number;
+import com.insurance.DateUtil;
+import com.insurance.Transaction;
+import com.insurance.Transactions;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Calendar;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+
+rule "todays queued transaction with new non AEPS policy"
+	dialect "mvel"
+	salience 10
+	when
+		transactions : Transactions( )
+		transaction : Transaction( apesInd != "Y" , itemStatus == "NEW" , queueDate : queueDate)
+		eval( DateUtil.compareDate(queueDate) == 0 )
+	then
+		transactions.addReceipts( " NON-AEPS-03", transaction  );
+		transaction.setPriority( "6" );
+		transaction.setDuedate( "P4d" );
+end

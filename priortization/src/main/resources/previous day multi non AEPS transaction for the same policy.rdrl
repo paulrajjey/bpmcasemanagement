@@ -1,0 +1,31 @@
+import java.lang.Number;
+import com.insurance.DateUtil;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Calendar;
+import java.util.Date;
+import com.insurance.Transaction;
+import com.insurance.Transactions;
+import com.insurance.MultiTransaction;
+import java.text.SimpleDateFormat;
+
+rule "previous day multi non AEPS transaction for the same policy"
+	dialect "mvel"
+	salience 20
+	when
+		transactions : Transactions( )
+		trans : Transaction( apesInd != "Y" , queueDate : queueDate)
+		trans1 : Transaction( id != trans.id , policyNumber == trans.policyNumber , apesInd != "Y" )
+		eval( DateUtil.compareDate(queueDate ) == 1 )
+	then
+		MultiTransaction mTrans = new MultiTransaction(); mTrans.addTransaction(trans);  mTrans.addTransaction(trans1)
+		transactions.addMultiReceipts( " NON-APES-02", mTrans );
+		trans.setPriority( "5" );
+		trans.setDuedate( "P4d" );
+		trans1.setPriority( "5" );
+		trans1.setDuedate( "P4d" );
+		retract( trans );
+		retract( trans1 );
+end

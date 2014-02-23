@@ -1,0 +1,23 @@
+import java.lang.Number;
+import com.insurance.DateUtil;
+import com.insurance.Transactions;
+import com.insurance.Transaction;
+import com.insurance.MultiTransaction;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+import com.insurance.wrkassignment.IRetrieveAssociatesforTransaction;
+
+rule "1.assign associates to previous day non AEPS transaction not assigned due to eligibility or capacity constraints"
+	dialect "mvel"
+	salience 70
+	when
+		There is a transaction
+		get all receipts that has been categorized for the given NON-AEPS-01
+	then
+		assign associates for the categorized receiptes
+end

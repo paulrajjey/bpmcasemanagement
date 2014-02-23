@@ -1,0 +1,7 @@
+'Transaction.itemStatus' : ['UNASSIGNED','ASSIGNED','NEW']
+'Transaction.statusReason' : ['UNAVAILABLE CAPACITY']
+'Transaction.apesInd' : ['Y=Yes','N=No']
+'Transaction.priority' : ['0','1','2','3','4','5','6','7','8','9','10','11','12','13']
+'Category.value' : ['NON-AEPS-02','AEPS-02','AUTOSYS1-02','AUTOSYS2-02']
+'Transaction.duedate' : ['P1d','P2d','P3d','P4d','P5d','P6d','P7d','P8d','P9d',]
+'Transaction.state' : ['WI','IL','MS']

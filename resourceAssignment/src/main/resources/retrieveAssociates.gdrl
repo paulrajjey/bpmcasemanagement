@@ -1,0 +1,2 @@
+global com.insurance.wrkassignment.IRetrieveAssociatesforTransaction retrieveAssociates;
+global com.insurance.Transactions processTransactions;
