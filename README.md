@@ -2,7 +2,7 @@ bpmcasemanagement
 =================
 
 JBPM 6.0 - Casemanagement
-This git repo created for JBPM 6.0 BPM project , which contains bpm assests (Rules and processes and its meta data file) nothing else. Don't add any thing else other then BPM/BRMS assest.
+This git repo created for JBOSS BPM project , which contains bpm assets (Rules and processes and its meta data file) nothing else, don't add any thing else other then BPM/BRMS assets.
 
 Description : This BPM project developed for "Case management" (Automated work assignment and tracking)  work flow for Insurance industry that supports mainly customer service department who manages day to day activity involved in insurance policies. For example , customer "Jey" has policy with Insurance Carreer "X", when Jey wants add new vehicle on his existing policy, he will log into Insurance wep site and add new vehicle , that transaction posted to career's back end system, since this transaction needs human review, it will process through work flow system.  All transactions posted to the policy admin system are processed through BPM CASE Management workflow. 
 
